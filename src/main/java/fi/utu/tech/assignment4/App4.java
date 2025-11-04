@@ -22,8 +22,7 @@ public class App4 {
             System.out.println(ug);
         }
 
-        TaskAllocator allocator = new TaskAllocator();
-        List<GradingTask> gradingTasks = allocator.sloppyAllocator(ungradedSubmissions);
+        List<GradingTask> gradingTasks = TaskAllocator.sloppyAllocator(ungradedSubmissions);
 
         int gradingTaskAmount = gradingTasks.size();
 

@@ -22,6 +22,14 @@ public class GradingTask implements Runnable {
         submissions = newSubmissions;
     }
 
+    public void addSubmission(Submission submission) {
+        submissions.add(submission);
+    }
+
+    public List<Submission> getSubmissions() {
+        return submissions;
+    }
+
     public List<Submission> getGraded() {
         return graded;
     }
