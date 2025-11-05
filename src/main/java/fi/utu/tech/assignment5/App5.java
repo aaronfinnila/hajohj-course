@@ -14,7 +14,7 @@ public class App5 {
 
         long startTime = System.currentTimeMillis();
         
-        List<Submission> ungradedSubmissions = SubmissionGenerator.generateSubmissions(50, 200, Strategy.UNFAIR);
+        List<Submission> ungradedSubmissions = SubmissionGenerator.generateSubmissions(60, 200, Strategy.STATIC);
         List<Submission> gradedSubmissions = new ArrayList<>();
         List<Thread> gradingThreads = new ArrayList<>();
         
@@ -22,7 +22,7 @@ public class App5 {
             System.out.println(ug);
         }
 
-        List<GradingTask> gradingTasks = TaskAllocator.allocate(ungradedSubmissions, 50);
+        List<GradingTask> gradingTasks = TaskAllocator.allocate(ungradedSubmissions, 12);
 
         int gradingTaskAmount = gradingTasks.size();
 
@@ -30,18 +30,15 @@ public class App5 {
             GradingTask gt = gradingTasks.get(i);
             Thread gradingThread = new Thread(gt);
             gradingThreads.add(gradingThread);
-            System.out.println(gradingThread.getState());
         }
 
         for (Thread t : gradingThreads) {
             t.start();
-            System.out.println(t.getState());
         }
 
         for (Thread t : gradingThreads) {
             try {
                 t.join();
-                System.out.println(t.getState());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

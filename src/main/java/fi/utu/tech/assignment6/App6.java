@@ -16,7 +16,7 @@ public class App6 {
 
         long startTime = System.currentTimeMillis();
 
-        int submissionAmount = 50;
+        int submissionAmount = 60;
         
         List<Submission> ungradedSubmissions = SubmissionGenerator.generateSubmissions(submissionAmount, 200, Strategy.UNFAIR);
         List<Submission> gradedSubmissions = new ArrayList<>();
@@ -33,7 +33,7 @@ public class App6 {
             gradingTasks.add(gTask);
         }
 
-        ExecutorService exeService = Executors.newCachedThreadPool();
+        ExecutorService exeService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
         for (var gt : gradingTasks) {
             exeService.execute(gt);
